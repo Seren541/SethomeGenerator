@@ -1,0 +1,151 @@
+package main;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Generator {
+	
+	public static void main(String[] args) {
+		
+		
+		String[] homes = {"home", "base", "cb", "close", "gaurd",  "iron", "lake", "new", "pick", "raid", "spa", "tre", "indu", "jug", 
+				"doom", "tb", "hero", "vault",  "isle", "high", "drop", "1", "4", "trap", "trick", "pill", "vill", "phant", 
+				"trade", "mine", "team", "farm", "golem", "main", "ice", "jungle", "jung", "i", "t", "meetup", "cast", 
+				"castle", "ship", "mountain", "pillager", "villager", "hall", "horse", "port", "portal"};
+		String[] nhomes = {"home", "gold", "g", "lav", "pigtrade", "5", "2", "pigl", "piglin", "netherite", "neth", "fortress", "basalt", "hub", "bed", "hog",
+				"hidden", "op", "anchor", "red", "ghast"};
+		String[] ehomes = {"home", "end", "ender", "endermen", "3", "12", "e", "city", "xp", "fly", "void", "mainisland", "endgate", "stash", "mue", "under",
+				"obsidian", "obby", "ely", "shulk", "chorus", "purpur"};
+		
+		int gmin = 1;
+	    int gmax = 7;
+	    
+		int min = -500000;
+	    int max = 500000;
+	    
+		int nmin = -62500;
+	    int nmax = 62500;
+	    
+	    int hmin = 0;
+		int hmax = 256;
+		
+		ArrayList<Integer> list = new ArrayList<>();
+		ArrayList<Integer> nlist = new ArrayList<>();
+		ArrayList<Integer> elist = new ArrayList<>();
+		ArrayList<String> listofhomes = new ArrayList<String>();
+		
+		System.out.println("How many Sethomes would you like to generate? (Must be 20 or less)");
+		Scanner num = new Scanner(System.in);  //Number of sethomes input
+
+	    String amount = num.nextLine(); 
+	    
+	    int amo = Integer.parseInt(amount);
+	    
+	    if (0 < amo && amo < 100) {
+	    	
+	    for (int i = 0; i < amo; i++) {
+	    	
+	        int d = (int)(Math.random() * (gmax - gmin + 1) + gmin);
+	    	
+	        if (d == 1 || d == 2 || d == 3 || d == 4) {
+	        
+	    	    boolean homused = true;
+	    	    
+	        	double rand1 = Math.random() * (max - min + 1) + min;
+	        	int rand2 = (int)(Math.random() * (hmax - hmin + 1) + hmin);
+	        	double rand3 = Math.random() * (max - min + 1) + min; 
+	        	int hom = 0;
+	        	
+	        	while (homused) {
+	        	hom = (int)(Math.random() * (homes.length - 1 + 1) + 1);
+	        	if (list.contains(hom)) {
+	        		
+	        		
+	        	}
+	        	else {
+	        	homused = false;
+	        	}
+	        	
+	        	}
+	        	
+	        	list.add(hom);
+	        	nlist.add(0);
+	        	elist.add(0);
+
+	        	DecimalFormat numberFormat = new DecimalFormat("0.##");
+	        	
+	        	listofhomes.add(homes[hom-1] + " at x: " + numberFormat.format(rand1) + ", y: " + rand2 + ", z:" + numberFormat.format(rand3) + ", world");
+	        }
+	        
+	        if (d == 5 || d == 6) {
+	    	   
+	        	boolean homused = true;
+	    	    
+	        	double rand1 = Math.random() * (nmax - nmin + 1) + nmin;
+	        	int rand2 = (int)(Math.random() * (hmax - hmin + 1) + hmin);
+	        	double rand3 = Math.random() * (nmax - nmin + 1) + nmin; 
+	        	int hom = 0;
+	        	
+	        	while (homused) {
+	        	hom = (int)(Math.random() * (nhomes.length - 1 + 1) + 1);
+	        	if (nlist.contains(hom)) {
+	        		
+	        		
+	        	}
+	        	else {
+	        	homused = false;
+	        	}
+	        	
+	        	}
+	        	
+	        	list.add(0);
+	        	nlist.add(hom);
+	        	elist.add(0);
+	        	
+	        	DecimalFormat numberFormat = new DecimalFormat("0.##");
+	        	
+	        	listofhomes.add(nhomes[hom-1] + " at x: " + numberFormat.format(rand1) + ", y: " + rand2 + ", z:" + numberFormat.format(rand3) + ", world_the_nether");
+	        }
+	        
+	        if (d == 7) {
+		        
+	    	    boolean homused = true;
+	    	    
+	        	double rand1 = Math.random() * (max - min + 1) + min;
+	        	int rand2 = (int)(Math.random() * (hmax - hmin + 1) + hmin);
+	        	double rand3 = Math.random() * (max - min + 1) + min; 
+	        	int hom = 0;
+	        	
+	        	while (homused) {
+	        	hom = (int)(Math.random() * (ehomes.length - 1 + 1) + 1);
+	        	if (elist.contains(hom)) {
+	        		
+	        		
+	        	}
+	        	else {
+	        	homused = false;
+	        	}
+	        	
+	        	}
+	        	
+	        	list.add(0);
+	        	nlist.add(0);
+	        	elist.add(hom);
+	        	
+	        	DecimalFormat numberFormat = new DecimalFormat("0.##");
+	        	
+	        	listofhomes.add(ehomes[hom-1] + " at x: " + numberFormat.format(rand1) + ", y: " + rand2 + ", z:" + numberFormat.format(rand3) + ", world_the_end");
+	        }
+	    }
+	    
+	    Collections.sort(listofhomes);
+	    
+		   for(String counter: listofhomes){
+				System.out.println(counter);
+			}
+	    }
+	}
+
+}
