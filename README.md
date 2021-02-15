@@ -4,8 +4,6 @@ Generates Sethomes to use to bait people into trying to grief fake coordinates
 Example Generation:
 
 <br />
-<br />
-<br />
 
 basalt at x: 35734.22, y: 108, z:25038.16, world_the_nether <br />
 farm at x: 129325.96, y: 2, z:283973.16, world <br />
