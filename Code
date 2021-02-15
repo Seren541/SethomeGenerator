@@ -43,7 +43,7 @@ public class Generator {
 	    
 	    int amo = Integer.parseInt(amount);
 	    
-	    if (0 < amo && amo < 100) {
+	    if (0 < amo && amo < 21) {
 	    	
 	    for (int i = 0; i < amo; i++) {
 	    	
@@ -139,12 +139,20 @@ public class Generator {
 	        	listofhomes.add(ehomes[hom-1] + " at x: " + numberFormat.format(rand1) + ", y: " + rand2 + ", z:" + numberFormat.format(rand3) + ", world_the_end");
 	        }
 	    }
-	    
+
 	    Collections.sort(listofhomes);
 	    
 		   for(String counter: listofhomes){
 				System.out.println(counter);
 			}
+		   
+		System.out.println();
+		System.out.print("Press enter to exit.");
+		
+		
+		Scanner ex = new Scanner(System.in);  //Number of sethomes input
+
+	    String exitKey = num.nextLine(); 
 	    }
 	}
 
