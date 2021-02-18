@@ -2,6 +2,7 @@ package main;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -11,13 +12,19 @@ public class Generator {
 		
 		
 		String[] homes = {"home", "base", "cb", "close", "gaurd",  "iron", "lake", "new", "pick", "raid", "spa", "tre", "indu", "jug", 
-				"doom", "tb", "hero", "vault",  "isle", "high", "drop", "1", "4", "trap", "trick", "pill", "vill", "phant", 
+				"doom", "tb", "hero", "vault",  "isle", "high", "drop", "trap", "trick", "pill", "vill", "phant", 
 				"trade", "mine", "team", "farm", "golem", "main", "ice", "jungle", "jung", "i", "t", "meetup", "cast", 
-				"castle", "ship", "mountain", "pillager", "villager", "hall", "horse", "port", "portal"};
-		String[] nhomes = {"home", "gold", "g", "lav", "pigtrade", "5", "2", "pigl", "piglin", "netherite", "neth", "fortress", "basalt", "hub", "bed", "hog",
-				"hidden", "op", "anchor", "red", "ghast"};
-		String[] ehomes = {"home", "end", "ender", "endermen", "3", "12", "e", "city", "xp", "fly", "void", "mainisland", "endgate", "stash", "mue", "under",
-				"obsidian", "obby", "ely", "shulk", "chorus", "purpur"};
+				"castle", "ship", "mountain", "pillager", "villager", "hall", "horse", "port", "portal", "bart", "seren",
+				"alex", "teleport", "trade", "gaurdian", "santa", "obi", "house", "crop", "crops", "carrot", "potato", "pass", "passive", "mob", "flush",
+				"wool", "wood", "shovel", "pickaxe", "axe", "hoe", "hay", "sponge", "spawner", "spawn", "cave", "spider", "creeper", "zombie", "skele",
+				"skeleton", "husk", "stray", "sand", "brick", "arrow", "range", "trap", "cob", "art", "gall", "obby", "obsidian"};
+		String[] nhomes = {"home", "gold", "g", "lav", "pigtrade", "pigl", "piglin", "netherite", "neth", "fortress", "basalt", "hub", "bed", "hog",
+				"hidden", "op", "anchor", "red", "ghast", "strider", "hoglin", "wither", "skull", "fort", "blaze", "flat", "loot", "wind", "window"};
+		String[] ehomes = {"home", "end", "ender", "endermen", "e", "city", "xp", "fly", "void", "endgate", "stash", "mue", "under",
+				"ely", "shulk", "chorus", "purpur", "mast", "store", "storage", "fruit", "map"};
+		String[] repHome = {"base", "iron", "new", "raid", "indu", "trade", "farm", "trade", "gaurdian", "wool"};
+		String[] nethRepHome = {"gold", "piglin", "netherite", "fortress", "hoglin", "skull"};
+		String[] endRepHome = {"endermen", "endgate", "chorus"};
 		
 		int gmin = 1;
 	    int gmax = 7;
@@ -28,13 +35,18 @@ public class Generator {
 		int nmin = -62500;
 	    int nmax = 62500;
 	    
-	    int hmin = 0;
-		int hmax = 256;
+	    int hmin = 15;
+		int hmax = 140;
 		
 		ArrayList<Integer> list = new ArrayList<>();
 		ArrayList<Integer> nlist = new ArrayList<>();
 		ArrayList<Integer> elist = new ArrayList<>();
 		ArrayList<String> listofhomes = new ArrayList<String>();
+		
+		ArrayList<String> repHomeSearch = new ArrayList<>(Arrays.asList(repHome));
+		ArrayList<String> nethRepHomeSearch = new ArrayList<>(Arrays.asList(nethRepHome));
+		ArrayList<String> endRepHomeSearch = new ArrayList<>(Arrays.asList(endRepHome));
+		
 		
 		System.out.println("How many Sethomes would you like to generate? (Must be 20 or less)");
 		Scanner num = new Scanner(System.in);  //Number of sethomes input
@@ -42,14 +54,19 @@ public class Generator {
 	    String amount = num.nextLine(); 
 	    
 	    int amo = Integer.parseInt(amount);
+	    boolean repeatHome = false;
 	    
-	    if (0 < amo && amo < 21) {
+	    if (0 < amo && amo < 50) { //limits amount to be generated so that the computer can't get stuck searching for names it doesn't have.
 	    	
 	    for (int i = 0; i < amo; i++) {
 	    	
 	        int d = (int)(Math.random() * (gmax - gmin + 1) + gmin);
 	    	
-	        if (d == 1 || d == 2 || d == 3 || d == 4) {
+        	if (repeatHome == true) {
+        		
+        	}
+	        
+        	else if (d == 1 || d == 2 || d == 3 || d == 4) {
 	        
 	    	    boolean homused = true;
 	    	    
@@ -70,16 +87,24 @@ public class Generator {
 	        	
 	        	}
 	        	
+	        	
 	        	list.add(hom);
 	        	nlist.add(0);
 	        	elist.add(0);
 
+	        	
+	        	if (repHomeSearch.contains(hom)) {
+	        		repeatHome = true;
+	        	}
+	        	
+	        	
+	        	
 	        	DecimalFormat numberFormat = new DecimalFormat("0.##");
 	        	
 	        	listofhomes.add(homes[hom-1] + " at x: " + numberFormat.format(rand1) + ", y: " + rand2 + ", z:" + numberFormat.format(rand3) + ", world");
 	        }
 	        
-	        if (d == 5 || d == 6) {
+        	else if (d == 5 || d == 6) {
 	    	   
 	        	boolean homused = true;
 	    	    
@@ -109,7 +134,7 @@ public class Generator {
 	        	listofhomes.add(nhomes[hom-1] + " at x: " + numberFormat.format(rand1) + ", y: " + rand2 + ", z:" + numberFormat.format(rand3) + ", world_the_nether");
 	        }
 	        
-	        if (d == 7) {
+        	else if (d == 7) {
 		        
 	    	    boolean homused = true;
 	    	    
@@ -150,7 +175,7 @@ public class Generator {
 		System.out.print("Press enter to exit.");
 		
 		
-		Scanner ex = new Scanner(System.in);  //Number of sethomes input
+		Scanner ex = new Scanner(System.in);
 
 	    String exitKey = num.nextLine(); 
 	    }
