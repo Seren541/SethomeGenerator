@@ -1,8 +1,6 @@
 # SethomeGenerator
 Generates Sethomes to use to bait people into trying to grief fake coordinates
 
-(EXE file is a couple days old, still on the virst version whereas code document is further ahead)
-
 Example Generation:
 
 <br />
